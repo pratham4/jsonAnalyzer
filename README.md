@@ -1,4 +1,4 @@
-# Json Streaming Example
+# JSON Streaming Example (JSON Analyzer)
 This example demonstrates various aggreate operations like Mean, Median etc on user information by parsing json chunk by chunk.
 
 # Usage
