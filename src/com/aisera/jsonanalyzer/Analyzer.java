@@ -33,15 +33,27 @@ public class Analyzer {
             collector.add(iterator.next());
             index++;
             if (index % chunkSize == 0) {
-                System.out.println("---------- Chunk Number - " + index / chunkSize + " ----------");
-                printMedianAge(collector);
-                printMedianFriendCount(collector);
-                printMeanBalanceAmount(collector);
-                printMeanUnreadMessagesOfFemale(collector);
-                printUsersRegisteredEachYear(collector);
-                collector.clear();
+                printQueryResults(index, collector, false);
             }
         }
+
+        if (index % chunkSize != 0) {
+            printQueryResults(index, collector, true);
+        }
+    }
+
+    private void printQueryResults(int index, List<User> collector, boolean areRemaining) {
+        if (!areRemaining) {
+            System.out.println("---------- Chunk Number - " + index / chunkSize + " ----------");
+        } else {
+            System.out.println("---------- Remaining " + collector.size() + " no. of records ----------");
+        }
+        printMedianAge(collector);
+        printMedianFriendCount(collector);
+        printMeanBalanceAmount(collector);
+        printMeanUnreadMessagesOfFemale(collector);
+        printUsersRegisteredEachYear(collector);
+        collector.clear();
     }
 
     private void printMedianAge(List<User> collector) {
