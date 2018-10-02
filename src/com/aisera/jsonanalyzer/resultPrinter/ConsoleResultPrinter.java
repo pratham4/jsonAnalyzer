@@ -23,6 +23,11 @@ public class ConsoleResultPrinter {
         printMeanUnreadMessagesOfFemale(collector);
         printUsersRegisteredEachYear(collector);
         collector.clear();
+
+        if (areRemaining) {
+            System.out.println();
+            System.out.println();
+        }
     }
 
     private void printMedianAge(List<User> collector) {
