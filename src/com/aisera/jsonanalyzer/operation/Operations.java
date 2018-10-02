@@ -9,9 +9,13 @@ public class Operations {
 		Double sum = items.stream().mapToDouble(item -> selector.apply(item)).sum();
 		return sum / items.size();
 	}
-	
+
 	public static <T> Double median(List<T> items, Function<T, Double> selector) {
 		List<Double> values = items.stream().map(item -> selector.apply(item)).sorted().collect(Collectors.toList());
 		return values.get(values.size() / 2);
+	}
+
+	public static <T> Double count(List<T> items, Function<T, Double> selector) {
+		return items.stream().map(item -> selector.apply(item)).mapToDouble((item) -> (Double) item).sum();
 	}
 }

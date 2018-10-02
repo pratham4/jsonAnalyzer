@@ -35,7 +35,8 @@ public class Analyzer {
                 System.out.println("---------- Chunk Number - " + index / chunkSize + " ----------");
                 printMedianAge(collector);
                 printMedianFriendCount(collector);
-                // printMeanUnreadMessagesOfFemale(collector);
+                printMeanBalanceAmount(collector);
+                printMeanUnreadMessagesOfFemale(collector);
                 collector.clear();
             }
         }
@@ -50,9 +51,18 @@ public class Analyzer {
     }
 
     private void printMeanUnreadMessagesOfFemale(List<User> collector) {
-        System.out.println("Mean Unread Messages of Female: " + median(
-                collector.stream().filter(user -> user.getGender().equals("Female")).collect(Collectors.toList()),
+        System.out.println("Mean Unread Messages of Female: " + mean(
+                collector.stream().filter(user -> user.getGender().equals("female")).collect(Collectors.toList()),
                 user -> Double.parseDouble(user.getGreeting().split("!")[1].replaceAll("[^0-9]+", ""))));
     }
 
+    private void printMeanBalanceAmount(List<User> collector) {
+        System.out.println("Mean Balance Amount: "
+                + mean(collector, user -> Double.parseDouble(user.getBalance().replace("$", "").replace(",", ""))));
+    }
+
+    // private void printUsersRegisteredEachYear(List<User> collector) {
+    // System.out.println("Users Registered: " + count(collector, user -> new
+    // Double(user.getBalance())));
+    // }
 }
