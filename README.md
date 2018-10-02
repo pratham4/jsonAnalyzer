@@ -4,7 +4,8 @@ This example demonstrates various aggreate operations like Mean, Median etc on u
 # Usage
 ## Clone
 Use below command to clone repository.
-git clone https://github.com/pratham4/jsonAnalyzer.git
+
+    git clone https://github.com/pratham4/jsonAnalyzer.git
 
 ## To run the app, execute below command using command line.
 mvn install
