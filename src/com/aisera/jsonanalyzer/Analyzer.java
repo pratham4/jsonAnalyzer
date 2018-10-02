@@ -3,13 +3,10 @@ package com.aisera.jsonanalyzer;
 import static com.aisera.jsonanalyzer.operation.Operations.mean;
 import static com.aisera.jsonanalyzer.operation.Operations.median;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.aisera.jsonanalyzer.entity.User;
@@ -36,6 +33,8 @@ public class Analyzer {
                 printQueryResults(index, collector, false);
             }
         }
+
+        iterator.close();
 
         if (index % chunkSize != 0) {
             printQueryResults(index, collector, true);

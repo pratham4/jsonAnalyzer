@@ -13,6 +13,8 @@ public class App {
 		System.out.print("Input size of chunks: ");
 		int chunSize = Integer.parseInt(userInput.nextLine());
 
+		userInput.close();
+
 		Analyzer analyzer = new Analyzer(filename, chunSize);
 		analyzer.analyze();
 

@@ -4,9 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import com.aisera.jsonanalyzer.deserializer.GreetingCountDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class User {
 	private String guid;
@@ -19,11 +17,11 @@ public class User {
 	private String email;
 	private String phone;
 	private String address;
-	
+
 	@JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm:ssXXX")
 	private Date registered;
 	private List<Friend> friends = null;
-	
+
 	private String greeting;
 	private String favoriteFruit;
 
@@ -114,7 +112,7 @@ public class User {
 	public void setRegistered(Date registered) {
 		this.registered = registered;
 	}
-	
+
 	public int getRegisteredYear() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(registered);
@@ -128,7 +126,7 @@ public class User {
 	public void setFriends(List<Friend> friends) {
 		this.friends = friends;
 	}
-	
+
 	public int getFriendCount() {
 		return friends.size();
 	}
