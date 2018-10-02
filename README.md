@@ -7,7 +7,7 @@ Use below command to clone repository.
 
     git clone https://github.com/pratham4/jsonAnalyzer.git
 
-## To run the app, execute below command using command line.
+## To run the app, execute below command using command line, frrom jsonAnalyzer folder.
 mvn install
 
 mvn exec:java
