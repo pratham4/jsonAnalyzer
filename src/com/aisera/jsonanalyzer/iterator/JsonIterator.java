@@ -1,4 +1,4 @@
-package com.aisera.jsonanalyzer;
+package com.aisera.jsonanalyzer.iterator;
 
 import java.io.Closeable;
 import java.io.FileInputStream;
@@ -14,30 +14,30 @@ public class JsonIterator<T> implements Iterator<T>, Closeable {
 	private static final Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd'T'HH:mm:ssXXX").create();
 	private final JsonReader reader;
 	private final Class<T> clazz;
-	
+
 	public JsonIterator(final String fileName, Class<T> clazz) throws IOException {
-    	reader = new JsonReader(new InputStreamReader(new FileInputStream(fileName)));
-    	this.clazz = clazz;
-    	reader.beginArray();
-    }
-	
-    public boolean hasNext() {
-        try {
+		reader = new JsonReader(new InputStreamReader(new FileInputStream(fileName)));
+		this.clazz = clazz;
+		reader.beginArray();
+	}
+
+	public boolean hasNext() {
+		try {
 			return reader.hasNext();
 		} catch (IOException e) {
 			close();
 			throw new IllegalStateException();
 		}
-    }
+	}
 
-    public T next() {
-    	return gson.fromJson(reader, clazz);
-    }
-    
-    public void close() {
-        try {
-            reader.close();
-        } catch (final IOException ioe) {
-        }
-    }
+	public T next() {
+		return gson.fromJson(reader, clazz);
+	}
+
+	public void close() {
+		try {
+			reader.close();
+		} catch (final IOException ioe) {
+		}
+	}
 }
