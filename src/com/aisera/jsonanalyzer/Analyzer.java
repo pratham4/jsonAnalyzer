@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -37,6 +38,7 @@ public class Analyzer {
                 printMedianFriendCount(collector);
                 printMeanBalanceAmount(collector);
                 printMeanUnreadMessagesOfFemale(collector);
+                printUsersRegisteredEachYear(collector);
                 collector.clear();
             }
         }
@@ -61,8 +63,10 @@ public class Analyzer {
                 + mean(collector, user -> Double.parseDouble(user.getBalance().replace("$", "").replace(",", ""))));
     }
 
-    // private void printUsersRegisteredEachYear(List<User> collector) {
-    // System.out.println("Users Registered: " + count(collector, user -> new
-    // Double(user.getBalance())));
-    // }
+    private void printUsersRegisteredEachYear(List<User> collector) {
+        HashMap<Integer, Long> byYear = (HashMap<Integer, Long>) collector.stream()
+                .collect(Collectors.groupingBy(p -> p.getRegisteredYear(), Collectors.counting()));
+
+        byYear.forEach((year, count) -> System.out.println(count + " no. of users were registered for year " + year));
+    }
 }
